@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+echo 'Installing Ngrok..'
 
 if [ ! $(which wget) ]; then
     echo 'Please install wget package'
@@ -27,7 +27,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ ! -e ngrok.service ]; then
-    sudo -u $USER git clone --depth=1 https://github.com/simonmarton/systemd-ngrok.git
+    sudo -u `logname` git clone --depth=1 https://github.com/simonmarton/systemd-ngrok.git
     cd systemd-ngrok
 fi
 cp ngrok.service /lib/systemd/system/
@@ -40,6 +40,8 @@ wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd.zip
 unzip ngrok-stable-linux-amd.zip
 rm ngrok-stable-linux-amd.zip
 chmod +x ngrok
+
+echo 'Done, starting service..'
 
 systemctl enable ngrok.service
 systemctl start ngrok.service
