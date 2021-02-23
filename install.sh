@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -ex
 
 if [ ! $(which wget) ]; then
     echo 'Please install wget package'
