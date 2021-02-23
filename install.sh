@@ -26,7 +26,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ ! -e ngrok.service ]; then
-    git clone --depth=1 https://github.com/vincenthsu/systemd-ngrok.git
+    git clone --depth=1 https://github.com/simonmarton/systemd-ngrok.git
     cd systemd-ngrok
 fi
 cp ngrok.service /lib/systemd/system/
@@ -35,9 +35,9 @@ cp ngrok.yml /opt/ngrok
 sed -i "s/<add_your_token_here>/$1/g" /opt/ngrok/ngrok.yml
 
 cd /opt/ngrok
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip
-rm ngrok-stable-linux-amd64.zip
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd.zip
+unzip ngrok-stable-linux-amd.zip
+rm ngrok-stable-linux-amd.zip
 chmod +x ngrok
 
 systemctl enable ngrok.service
